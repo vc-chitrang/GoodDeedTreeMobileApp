@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06002218eae6f4242942a2069e68c636, type: 3}
   m_Name: KioskConfig
   m_EditorClassIdentifier: Assembly-CSharp::GoodDeedTreeMobileApp.KioskConfig
-  serverBaseUrl: http://192.168.1.50:8080
+  serverBaseUrl: http://192.168.1.242:8080
   requestTimeoutSeconds: 6
   nameMaxLength: 15
   promiseMaxLength: 60

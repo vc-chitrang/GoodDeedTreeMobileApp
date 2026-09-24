@@ -45,7 +45,7 @@ namespace GoodDeedTreeMobileApp {
             pinError = root.Q<Label>("pin-error");
             serverLabel = root.Q<Label>("op-server");
             pendingLabel = root.Q<Label>("op-pending");
-            root.Q<Label>("op-url").text = config.ServerBaseUrl;
+            root.Q<Label>("op-url").text = api.BaseUrl;
 
             root.Q<VisualElement>("operator-corner").RegisterCallback<PointerDownEvent>(OnCornerTapped);
 

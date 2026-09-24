@@ -7,7 +7,7 @@ namespace GoodDeedTreeMobileApp {
     public class KioskConfig : ScriptableObject {
         [Header("Server")]
         [Tooltip("Base URL of the wall server on the local network, without a trailing slash.")]
-        [SerializeField] private string serverBaseUrl = "http://192.168.1.50:8080";
+        [SerializeField] private string serverBaseUrl = "http://192.168.1.242:8080";
         [SerializeField] private int requestTimeoutSeconds = 6;
 
         [Header("Input")]
