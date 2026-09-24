@@ -404,3 +404,20 @@
     color: rgba(255, 244, 220, 0.6);
     margin-bottom: 24px;
 }
+
+.connection-status {
+    position: absolute;
+    right: 24px;
+    bottom: 18px;
+    font-size: 24px;
+    color: rgba(255, 244, 220, 0.7);
+    -unity-text-align: middle-right;
+}
+
+.connection-status--online {
+    color: rgba(140, 220, 150, 0.85);
+}
+
+.connection-status--offline {
+    color: rgba(255, 140, 120, 0.9);
+}

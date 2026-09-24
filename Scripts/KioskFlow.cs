@@ -91,6 +91,8 @@ namespace GoodDeedTreeMobileApp {
             }
         }
 
+        private ConnectionStatusView connectionStatus;
+
         private void OnEnable() {
             if (config == null) {
                 return;
@@ -99,6 +101,7 @@ namespace GoodDeedTreeMobileApp {
             BindUi();
             operatorPanel = new OperatorPanel(root, config, api, queue);
             leaf = new LeafView(root);
+            connectionStatus = new ConnectionStatusView(root, api, queue);
             BuildChips();
             UpdateCountLabel();
             ShowScreenImmediate(KioskScreen.Attract);
@@ -114,6 +117,9 @@ namespace GoodDeedTreeMobileApp {
         }
 
         private void Update() {
+            if (connectionStatus != null) {
+                connectionStatus.Tick();
+            }
             float now = Time.realtimeSinceStartup;
             bool inProgress = current != KioskScreen.Attract || operatorPanel.IsOpen;
             if (inProgress && now - lastInteraction > config.IdleResetSeconds) {
