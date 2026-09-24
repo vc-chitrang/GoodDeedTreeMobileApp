@@ -1,0 +1,95 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="Kiosk.uss" />
+    <ui:VisualElement name="kiosk-root" class="kiosk-root" picking-mode="Position">
+
+        <ui:VisualElement name="leaf-stage" class="leaf-stage" picking-mode="Ignore">
+            <ui:VisualElement name="leaf-glow" class="leaf-glow" picking-mode="Ignore" />
+            <ui:VisualElement name="leaf-body" class="leaf-body" picking-mode="Ignore">
+                <ui:VisualElement name="leaf-image" class="leaf-image" picking-mode="Ignore" />
+                <ui:VisualElement name="leaf-text" class="leaf-text" picking-mode="Ignore">
+                    <ui:Label name="leaf-name" class="leaf-name" picking-mode="Ignore" />
+                    <ui:Label name="leaf-promise" class="leaf-promise" picking-mode="Ignore" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="screen-attract" class="screen" picking-mode="Position">
+            <ui:Label text="Plant a promise for today" class="headline attract-headline" picking-mode="Ignore" />
+            <ui:Label name="count-label" text="1,248 promises planted" class="count-label" picking-mode="Ignore" />
+            <ui:Label name="attract-hint" text="Tap anywhere to begin" class="hint attract-hint" picking-mode="Ignore" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="screen-input" class="screen" picking-mode="Position">
+            <ui:Label text="What good will you do today?" class="headline input-headline" picking-mode="Ignore" />
+            <ui:VisualElement class="field-block">
+                <ui:VisualElement class="field-header">
+                    <ui:Label text="Your first name" class="field-label" />
+                    <ui:Label name="name-counter" text="0 / 15" class="field-counter" />
+                </ui:VisualElement>
+                <ui:TextField name="name-field" class="kiosk-field" />
+            </ui:VisualElement>
+            <ui:VisualElement class="field-block">
+                <ui:VisualElement class="field-header">
+                    <ui:Label text="Your promise" class="field-label" />
+                    <ui:Label name="promise-counter" text="0 / 60" class="field-counter" />
+                </ui:VisualElement>
+                <ui:TextField name="promise-field" class="kiosk-field kiosk-field--promise" multiline="true" />
+            </ui:VisualElement>
+            <ui:Label text="Need an idea?" class="field-label chips-label" />
+            <ui:VisualElement name="chips" class="chips" />
+            <ui:Button name="continue-button" text="Continue" class="kiosk-button primary" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="screen-release" class="screen screen--center" picking-mode="Position">
+            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+            <ui:Label text="⌃" class="swipe-arrow" name="swipe-arrow" picking-mode="Ignore" />
+            <ui:Label text="Swipe up to release your leaf" class="headline release-headline" picking-mode="Ignore" />
+            <ui:Button name="release-button" text="Release" class="kiosk-button primary" />
+            <ui:Button name="edit-button" text="Change my promise" class="kiosk-button secondary" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="screen-sending" class="screen screen--center" picking-mode="Position">
+            <ui:Label text="Your leaf is on its way to the tree…" class="message" picking-mode="Ignore" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="screen-result" class="screen screen--center" picking-mode="Position">
+            <ui:VisualElement name="result-icon" class="result-icon" picking-mode="Ignore" />
+            <ui:Label name="result-label" class="message" picking-mode="Ignore" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="screen-thanks" class="screen screen--center" picking-mode="Position">
+            <ui:VisualElement class="result-icon" picking-mode="Ignore" />
+            <ui:Label name="thanks-label" class="message thanks-message" picking-mode="Ignore" />
+            <ui:Label text="Thank you for planting a promise." class="hint" picking-mode="Ignore" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="operator-corner" class="operator-corner" picking-mode="Position" />
+
+        <ui:VisualElement name="pin-overlay" class="overlay" picking-mode="Position">
+            <ui:VisualElement class="panel">
+                <ui:Label text="Operator PIN" class="panel-title" />
+                <ui:Label name="pin-dots" text=" " class="pin-dots" />
+                <ui:Label name="pin-error" text=" " class="pin-error" />
+                <ui:VisualElement name="pin-pad" class="pin-pad" />
+                <ui:VisualElement class="panel-row">
+                    <ui:Button name="pin-cancel" text="Cancel" class="kiosk-button secondary small" />
+                    <ui:Button name="pin-enter" text="Enter" class="kiosk-button primary small" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="operator-overlay" class="overlay" picking-mode="Position">
+            <ui:VisualElement class="panel">
+                <ui:Label text="Operator" class="panel-title" />
+                <ui:Label name="op-server" text="Server: not checked" class="op-line" />
+                <ui:Label name="op-pending" text="Pending offline leaves: 0" class="op-line" />
+                <ui:Label name="op-url" text=" " class="op-line op-small" />
+                <ui:Button name="op-check" text="Check server connection" class="kiosk-button secondary small wide" />
+                <ui:Button name="op-retry" text="Send pending leaves now" class="kiosk-button secondary small wide" />
+                <ui:Button name="op-restart" text="Restart app" class="kiosk-button secondary small wide" />
+                <ui:Button name="op-exit" text="Exit kiosk mode" class="kiosk-button danger small wide" />
+                <ui:Button name="op-close" text="Close" class="kiosk-button primary small wide" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

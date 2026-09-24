@@ -1,0 +1,406 @@
+/* Reference resolution 1080 x 1920 portrait (see KioskPanelSettings). */
+
+.kiosk-root {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../Art/Background.png");
+    -unity-background-scale-mode: stretch-to-fill;
+    -unity-font: url("../Art/Fonts/ConduitITC-Regular.otf");
+    color: rgb(255, 244, 220);
+    overflow: hidden;
+}
+
+/* ---------- leaf ---------- */
+
+.leaf-stage {
+    position: absolute;
+    width: 900px;
+    height: 450px;
+    left: 90px;
+    top: 560px;
+    transform-origin: center;
+}
+
+.leaf-glow {
+    position: absolute;
+    left: -180px;
+    top: -330px;
+    width: 1260px;
+    height: 1110px;
+    background-image: url("../Art/Glow.png");
+    -unity-background-scale-mode: stretch-to-fill;
+    opacity: 0.6;
+}
+
+.leaf-body {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    rotate: -20deg;
+    transform-origin: center;
+}
+
+.leaf-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../Art/Leaf.png");
+    -unity-background-scale-mode: stretch-to-fill;
+}
+
+.leaf-text {
+    position: absolute;
+    left: 25%;
+    right: 16%;
+    top: 28%;
+    bottom: 26%;
+    justify-content: center;
+    align-items: center;
+}
+
+.leaf-name {
+    font-size: 64px;
+    -unity-font: url("../Art/Fonts/ConduitITC-Bold.ttf");
+    color: rgb(214, 150, 36);
+    -unity-text-align: middle-center;
+    text-shadow: 0 3px 6px rgba(20, 12, 0, 0.85);
+    white-space: nowrap;
+    margin-bottom: 6px;
+}
+
+.leaf-promise {
+    font-size: 34px;
+    color: rgb(245, 214, 140);
+    -unity-text-align: middle-center;
+    text-shadow: 0 2px 5px rgba(20, 12, 0, 0.9);
+    white-space: normal;
+    max-width: 100%;
+}
+
+/* ---------- screens ---------- */
+
+.screen {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 110px 80px 120px 80px;
+    align-items: center;
+    display: none;
+    opacity: 0;
+}
+
+.screen--center {
+    justify-content: center;
+}
+
+.screen--visible {
+    display: flex;
+}
+
+.spacer {
+    flex-grow: 1;
+}
+
+.headline {
+    font-size: 70px;
+    -unity-text-align: middle-center;
+    white-space: normal;
+    -unity-font-style: italic;
+    color: rgb(255, 240, 204);
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+}
+
+.attract-headline {
+    margin-top: 170px;
+}
+
+.count-label {
+    margin-top: 24px;
+    font-size: 40px;
+    letter-spacing: 3px;
+    color: rgb(232, 190, 96);
+}
+
+.hint {
+    font-size: 36px;
+    color: rgba(255, 244, 220, 0.75);
+    -unity-text-align: middle-center;
+    margin-top: 28px;
+}
+
+.attract-hint {
+    position: absolute;
+    bottom: 170px;
+    left: 0;
+    right: 0;
+}
+
+.input-headline {
+    margin-top: 470px;
+    margin-bottom: 36px;
+    font-size: 58px;
+}
+
+.field-block {
+    width: 100%;
+    margin-bottom: 26px;
+}
+
+.field-header {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.field-label {
+    font-size: 32px;
+    color: rgb(232, 190, 96);
+}
+
+.field-counter {
+    font-size: 30px;
+    color: rgba(255, 244, 220, 0.7);
+}
+
+.field-counter--full {
+    color: rgb(255, 170, 110);
+}
+
+.kiosk-field {
+    margin: 0;
+    width: 100%;
+}
+
+.kiosk-field .unity-text-field__input,
+.kiosk-field .unity-base-text-field__input {
+    font-size: 44px;
+    min-height: 104px;
+    padding: 18px 28px;
+    border-radius: 26px;
+    border-width: 2px;
+    border-color: rgba(232, 190, 96, 0.55);
+    background-color: rgba(255, 250, 238, 0.96);
+    color: rgb(30, 34, 30);
+    -unity-font: url("../Art/Fonts/ConduitITC-Regular.otf");
+}
+
+.kiosk-field--promise .unity-text-field__input,
+.kiosk-field--promise .unity-base-text-field__input {
+    min-height: 170px;
+    white-space: normal;
+}
+
+.kiosk-field:focus .unity-text-field__input,
+.kiosk-field:focus .unity-base-text-field__input {
+    border-color: rgb(232, 190, 96);
+}
+
+.chips-label {
+    align-self: flex-start;
+    margin-top: 6px;
+    margin-bottom: 12px;
+}
+
+.chips {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+}
+
+.chip {
+    font-size: 34px;
+    padding: 16px 30px;
+    margin: 0 16px 16px 0;
+    border-radius: 44px;
+    border-width: 2px;
+    border-color: rgba(232, 190, 96, 0.8);
+    background-color: rgba(255, 244, 220, 0.08);
+    color: rgb(255, 240, 204);
+}
+
+.chip--selected {
+    background-color: rgb(214, 150, 36);
+    color: rgb(28, 22, 8);
+}
+
+.kiosk-button {
+    font-size: 44px;
+    min-height: 124px;
+    width: 640px;
+    border-radius: 62px;
+    border-width: 0;
+    margin-top: 14px;
+    -unity-font: url("../Art/Fonts/ConduitITC-Bold.ttf");
+    transition-property: opacity, scale;
+    transition-duration: 0.18s;
+}
+
+.kiosk-button:active {
+    scale: 0.96 0.96;
+}
+
+.kiosk-button:disabled {
+    opacity: 0.35;
+}
+
+.primary {
+    background-color: rgb(214, 150, 36);
+    color: rgb(28, 22, 8);
+}
+
+.secondary {
+    background-color: rgba(255, 244, 220, 0.12);
+    color: rgb(255, 240, 204);
+    border-width: 2px;
+    border-color: rgba(255, 244, 220, 0.4);
+}
+
+.danger {
+    background-color: rgb(170, 58, 44);
+    color: rgb(255, 240, 230);
+}
+
+.small {
+    font-size: 36px;
+    min-height: 96px;
+    width: 300px;
+    margin: 10px;
+}
+
+.wide {
+    width: 720px;
+}
+
+.swipe-arrow {
+    font-size: 120px;
+    color: rgb(232, 190, 96);
+    -unity-text-align: middle-center;
+}
+
+.release-headline {
+    margin-bottom: 40px;
+}
+
+.message {
+    font-size: 60px;
+    -unity-text-align: middle-center;
+    white-space: normal;
+    color: rgb(255, 240, 204);
+    margin-bottom: 30px;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+}
+
+.thanks-message {
+    color: rgb(245, 214, 140);
+}
+
+.result-icon {
+    width: 260px;
+    height: 130px;
+    background-image: url("../Art/Leaf.png");
+    -unity-background-scale-mode: scale-to-fit;
+    rotate: -30deg;
+    margin-bottom: 40px;
+}
+
+/* ---------- operator ---------- */
+
+.operator-corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 170px;
+    height: 170px;
+}
+
+.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.82);
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.overlay--visible {
+    display: flex;
+}
+
+.panel {
+    width: 860px;
+    padding: 50px;
+    border-radius: 36px;
+    background-color: rgb(22, 38, 42);
+    border-width: 2px;
+    border-color: rgba(232, 190, 96, 0.5);
+    align-items: center;
+}
+
+.panel-title {
+    font-size: 52px;
+    color: rgb(232, 190, 96);
+    margin-bottom: 26px;
+}
+
+.panel-row {
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 18px;
+}
+
+.pin-dots {
+    font-size: 72px;
+    letter-spacing: 18px;
+    min-height: 90px;
+    color: rgb(255, 240, 204);
+}
+
+.pin-error {
+    font-size: 30px;
+    min-height: 44px;
+    color: rgb(255, 150, 120);
+}
+
+.pin-pad {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 660px;
+    justify-content: center;
+}
+
+.pin-key {
+    width: 190px;
+    height: 150px;
+    margin: 10px;
+    font-size: 58px;
+    border-radius: 28px;
+    background-color: rgba(255, 244, 220, 0.1);
+    color: rgb(255, 240, 204);
+    border-width: 0;
+}
+
+.op-line {
+    font-size: 36px;
+    margin-bottom: 14px;
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+.op-small {
+    font-size: 28px;
+    color: rgba(255, 244, 220, 0.6);
+    margin-bottom: 24px;
+}
