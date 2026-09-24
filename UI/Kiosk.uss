@@ -57,9 +57,10 @@
 
 .leaf-text {
     position: absolute;
-    left: 25%;
-    right: 16%;
-    top: 28%;
+    /* centred on the leaf blade (18%-77% of the image width), not the whole image with its stem */
+    left: 22%;
+    right: 27%;
+    top: 26%;
     bottom: 26%;
     justify-content: center;
     align-items: center;
@@ -68,8 +69,10 @@
 .leaf-name {
     font-size: 64px;
     -unity-font: url("../Art/Fonts/ConduitITC-Bold.ttf");
-    color: rgb(214, 150, 36);
+    color: rgb(255, 232, 40);
     -unity-text-align: middle-center;
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgb(196, 134, 18);
     text-shadow: 0 3px 6px rgba(20, 12, 0, 0.85);
     white-space: nowrap;
     margin-bottom: 6px;
@@ -77,8 +80,10 @@
 
 .leaf-promise {
     font-size: 34px;
-    color: rgb(245, 214, 140);
+    color: rgb(255, 232, 40);
     -unity-text-align: middle-center;
+    -unity-text-outline-width: 0.75px;
+    -unity-text-outline-color: rgb(196, 134, 18);
     text-shadow: 0 2px 5px rgba(20, 12, 0, 0.9);
     white-space: normal;
     max-width: 100%;
