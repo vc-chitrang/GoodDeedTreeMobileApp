@@ -22,9 +22,7 @@ namespace GoodDeedTreeMobileApp {
         public ConnectionStatusView(VisualElement root, KioskApiClient apiClient, SubmissionQueue submissionQueue) {
             api = apiClient;
             queue = submissionQueue;
-            label = new Label { name = "connection-status", pickingMode = PickingMode.Ignore };
-            label.AddToClassList("connection-status");
-            root.Add(label);
+            label = root.Q<Label>("connection-status");   // authored in Kiosk.uxml
             Render();
         }
 

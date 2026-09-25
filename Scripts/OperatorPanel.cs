@@ -49,15 +49,13 @@ namespace GoodDeedTreeMobileApp {
 
             root.Q<VisualElement>("operator-corner").RegisterCallback<PointerDownEvent>(OnCornerTapped);
 
-            VisualElement pad = root.Q<VisualElement>("pin-pad");
-            string[] keys = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "C", "0", "<" };
-            for (int i = 0; i < keys.Length; i++) {
-                string key = keys[i];
-                Button button = new Button(() => OnPinKey(key));
-                button.text = key == "<" ? "⌫" : key;
-                button.AddToClassList("pin-key");
-                pad.Add(button);
+            // PIN keys are authored in Kiosk.uxml (pin-key-0..9, pin-key-clear, pin-key-back).
+            for (int digit = 0; digit <= 9; digit++) {
+                string key = digit.ToString();
+                root.Q<Button>("pin-key-" + key).clicked += () => OnPinKey(key);
             }
+            root.Q<Button>("pin-key-clear").clicked += () => OnPinKey("C");
+            root.Q<Button>("pin-key-back").clicked += () => OnPinKey("<");
 
             root.Q<Button>("pin-cancel").clicked += CloseAll;
             root.Q<Button>("pin-enter").clicked += SubmitPin;

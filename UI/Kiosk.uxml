@@ -36,7 +36,14 @@
                 <ui:TextField name="promise-field" class="kiosk-field kiosk-field--promise" multiline="true" />
             </ui:VisualElement>
             <ui:Label text="Need an idea?" class="field-label chips-label" />
-            <ui:VisualElement name="chips" class="chips" />
+            <ui:VisualElement name="chips" class="chips">
+                <ui:Button name="chip-0" text="Call my parents" class="chip" />
+                <ui:Button name="chip-1" text="Help a stranger" class="chip" />
+                <ui:Button name="chip-2" text="Feed an animal" class="chip" />
+                <ui:Button name="chip-3" text="Thank someone today" class="chip" />
+                <ui:Button name="chip-4" text="" class="chip" />
+                <ui:Button name="chip-5" text="" class="chip" />
+            </ui:VisualElement>
             <ui:Button name="continue-button" text="Continue" class="kiosk-button primary" />
         </ui:VisualElement>
 
@@ -63,6 +70,8 @@
             <ui:Label text="Thank you for planting a promise." class="hint" picking-mode="Ignore" />
         </ui:VisualElement>
 
+        <ui:Label name="connection-status" text="&#x25CF; Connecting to wall&#x2026;" class="connection-status" picking-mode="Ignore" />
+
         <ui:VisualElement name="operator-corner" class="operator-corner" picking-mode="Position" />
 
         <ui:VisualElement name="pin-overlay" class="overlay" picking-mode="Position">
@@ -70,7 +79,20 @@
                 <ui:Label text="Operator PIN" class="panel-title" />
                 <ui:Label name="pin-dots" text=" " class="pin-dots" />
                 <ui:Label name="pin-error" text=" " class="pin-error" />
-                <ui:VisualElement name="pin-pad" class="pin-pad" />
+                <ui:VisualElement name="pin-pad" class="pin-pad">
+                    <ui:Button name="pin-key-1" text="1" class="pin-key" />
+                    <ui:Button name="pin-key-2" text="2" class="pin-key" />
+                    <ui:Button name="pin-key-3" text="3" class="pin-key" />
+                    <ui:Button name="pin-key-4" text="4" class="pin-key" />
+                    <ui:Button name="pin-key-5" text="5" class="pin-key" />
+                    <ui:Button name="pin-key-6" text="6" class="pin-key" />
+                    <ui:Button name="pin-key-7" text="7" class="pin-key" />
+                    <ui:Button name="pin-key-8" text="8" class="pin-key" />
+                    <ui:Button name="pin-key-9" text="9" class="pin-key" />
+                    <ui:Button name="pin-key-clear" text="C" class="pin-key" />
+                    <ui:Button name="pin-key-0" text="0" class="pin-key" />
+                    <ui:Button name="pin-key-back" text="&#x232B;" class="pin-key" />
+                </ui:VisualElement>
                 <ui:VisualElement class="panel-row">
                     <ui:Button name="pin-cancel" text="Cancel" class="kiosk-button secondary small" />
                     <ui:Button name="pin-enter" text="Enter" class="kiosk-button primary small" />

@@ -150,6 +150,12 @@ namespace GoodDeedTreeMobileApp {
             nameCounter = root.Q<Label>("name-counter");
             promiseCounter = root.Q<Label>("promise-counter");
             chipsContainer = root.Q<VisualElement>("chips");
+            chipButtons.Clear();
+            foreach (Button chip in chipsContainer.Query<Button>(className: "chip").ToList()) {
+                Button bound = chip;
+                bound.clicked += () => OnChipTapped(bound.text);
+                chipButtons.Add(bound);
+            }
             continueButton = root.Q<Button>("continue-button");
             swipeArrow = root.Q<Label>("swipe-arrow");
             resultLabel = root.Q<Label>("result-label");
@@ -174,19 +180,23 @@ namespace GoodDeedTreeMobileApp {
             root.Q<Button>("edit-button").clicked += OnEditPromise;
         }
 
+        /// <summary>
+        /// Fills the chip buttons authored in Kiosk.uxml (chip-0, chip-1, ...) with the current
+        /// suggestions; unused chips are hidden. Extra suggestions beyond the authored chips are dropped.
+        /// </summary>
         private void BuildChips() {
-            chipsContainer.Clear();
-            chipButtons.Clear();
-            for (int i = 0; i < suggestions.Count; i++) {
-                string suggestion = suggestions[i];
-                if (suggestion.Length > config.PromiseMaxLength) {
+            int slot = 0;
+            for (int i = 0; i < suggestions.Count && slot < chipButtons.Count; i++) {
+                if (suggestions[i].Length > config.PromiseMaxLength) {
                     continue;
                 }
-                Button chip = new Button(() => OnChipTapped(suggestion));
-                chip.text = suggestion;
-                chip.AddToClassList("chip");
-                chipsContainer.Add(chip);
-                chipButtons.Add(chip);
+                chipButtons[slot].text = suggestions[i];
+                chipButtons[slot].style.display = DisplayStyle.Flex;
+                slot++;
+            }
+            for (; slot < chipButtons.Count; slot++) {
+                chipButtons[slot].text = string.Empty;
+                chipButtons[slot].style.display = DisplayStyle.None;
             }
             RefreshChipSelection();
         }

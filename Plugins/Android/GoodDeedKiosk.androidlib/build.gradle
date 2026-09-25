@@ -2,7 +2,10 @@ apply plugin: 'com.android.library'
 
 android {
     namespace 'com.viitorcloud.gooddeedtree.kiosk'
-    compileSdk 34
+    // Match the unityLibrary module so Gradle uses the build-tools Unity ships (36.0.0)
+    // instead of the AGP default (35.0.0), which is not installed.
+    compileSdk 36
+    buildToolsVersion = "36.0.0"
 
     defaultConfig {
         minSdk 28
