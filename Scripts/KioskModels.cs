@@ -29,6 +29,18 @@ namespace GoodDeedTreeMobileApp {
         public string[] suggestions;
     }
 
+    /// <summary> One already-planted deed, from GET /api/v1/recent. </summary>
+    [Serializable]
+    public class RecentDeed {
+        public string name;
+        public string promise;
+    }
+
+    [Serializable]
+    public class RecentResponse {
+        public RecentDeed[] deeds;
+    }
+
     public enum DeliveryStatus {
         Delivered = 0,
         Unreachable = 1,

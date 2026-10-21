@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
-    <Style src="Kiosk.uss" />
+    <ui:Style src="Kiosk.uss" />
     <ui:VisualElement name="kiosk-root" class="kiosk-root" picking-mode="Position">
 
         <ui:VisualElement name="leaf-stage" class="leaf-stage" picking-mode="Ignore">
@@ -14,8 +14,23 @@
         </ui:VisualElement>
 
         <ui:VisualElement name="screen-attract" class="screen" picking-mode="Position">
+            <ui:VisualElement name="deed-cards" class="deed-cards" picking-mode="Ignore">
+                <ui:VisualElement name="deed-card-0" class="deed-card" picking-mode="Ignore">
+                    <ui:Label name="deed-card-0-text" class="deed-card-text" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement name="deed-card-1" class="deed-card" picking-mode="Ignore">
+                    <ui:Label name="deed-card-1-text" class="deed-card-text" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement name="deed-card-2" class="deed-card" picking-mode="Ignore">
+                    <ui:Label name="deed-card-2-text" class="deed-card-text" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement name="deed-card-3" class="deed-card" picking-mode="Ignore">
+                    <ui:Label name="deed-card-3-text" class="deed-card-text" picking-mode="Ignore" />
+                </ui:VisualElement>
+            </ui:VisualElement>
             <ui:Label text="Plant a promise for today" class="headline attract-headline" picking-mode="Ignore" />
             <ui:Label name="count-label" text="1,248 promises planted" class="count-label" picking-mode="Ignore" />
+            <ui:VisualElement name="attract-arrow" class="kiosk-icon attract-arrow-icon icon-arrow-n" picking-mode="Ignore" />
             <ui:Label name="attract-hint" text="Tap anywhere to begin" class="hint attract-hint" picking-mode="Ignore" />
         </ui:VisualElement>
 
@@ -23,19 +38,28 @@
             <ui:Label text="What good will you do today?" class="headline input-headline" picking-mode="Ignore" />
             <ui:VisualElement class="field-block">
                 <ui:VisualElement class="field-header">
-                    <ui:Label text="Your first name" class="field-label" />
+                    <ui:VisualElement class="field-label-row">
+                        <ui:VisualElement class="kiosk-icon field-icon icon-person" picking-mode="Ignore" />
+                        <ui:Label text="Your first name" class="field-label" />
+                    </ui:VisualElement>
                     <ui:Label name="name-counter" text="0 / 15" class="field-counter" />
                 </ui:VisualElement>
                 <ui:TextField name="name-field" class="kiosk-field" />
             </ui:VisualElement>
             <ui:VisualElement class="field-block">
                 <ui:VisualElement class="field-header">
-                    <ui:Label text="Your promise" class="field-label" />
+                    <ui:VisualElement class="field-label-row">
+                        <ui:VisualElement class="kiosk-icon field-icon icon-edit" picking-mode="Ignore" />
+                        <ui:Label text="Your promise" class="field-label" />
+                    </ui:VisualElement>
                     <ui:Label name="promise-counter" text="0 / 60" class="field-counter" />
                 </ui:VisualElement>
                 <ui:TextField name="promise-field" class="kiosk-field kiosk-field--promise" multiline="true" />
             </ui:VisualElement>
-            <ui:Label text="Need an idea?" class="field-label chips-label" />
+            <ui:VisualElement class="field-label-row chips-label-row">
+                <ui:VisualElement class="kiosk-icon field-icon icon-star" picking-mode="Ignore" />
+                <ui:Label text="Need an idea?" class="field-label chips-label" />
+            </ui:VisualElement>
             <ui:VisualElement name="chips" class="chips">
                 <ui:Button name="chip-0" text="Call my parents" class="chip" />
                 <ui:Button name="chip-1" text="Help a stranger" class="chip" />
@@ -44,39 +68,54 @@
                 <ui:Button name="chip-4" text="" class="chip" />
                 <ui:Button name="chip-5" text="" class="chip" />
             </ui:VisualElement>
-            <ui:Button name="continue-button" text="Continue" class="kiosk-button primary" />
+            <ui:Button name="continue-button" text="Continue" class="kiosk-button primary">
+                <ui:VisualElement class="kiosk-icon btn-icon btn-icon-right icon-arrow-n icon-tint-dark" picking-mode="Ignore" />
+            </ui:Button>
         </ui:VisualElement>
 
         <ui:VisualElement name="screen-release" class="screen screen--center" picking-mode="Position">
             <ui:VisualElement class="spacer" picking-mode="Ignore" />
-            <ui:Label text="⌃" class="swipe-arrow" name="swipe-arrow" picking-mode="Ignore" />
+            <ui:VisualElement name="swipe-arrow-icon" class="kiosk-icon swipe-arrow-icon icon-arrow-n" picking-mode="Ignore" />
             <ui:Label text="Swipe up to release your leaf" class="headline release-headline" picking-mode="Ignore" />
-            <ui:Button name="release-button" text="Release" class="kiosk-button primary" />
-            <ui:Button name="edit-button" text="Change my promise" class="kiosk-button secondary" />
+            <ui:Button name="release-button" text="Release" class="kiosk-button primary">
+                <ui:VisualElement class="kiosk-icon btn-icon btn-icon-right icon-arrow-n icon-tint-dark" picking-mode="Ignore" />
+            </ui:Button>
+            <ui:Button name="edit-button" text="Change my promise" class="kiosk-button secondary">
+                <ui:VisualElement class="kiosk-icon btn-icon btn-icon-left icon-arrow-back icon-tint-light" picking-mode="Ignore" />
+            </ui:Button>
         </ui:VisualElement>
 
         <ui:VisualElement name="screen-sending" class="screen screen--center" picking-mode="Position">
-            <ui:Label text="Your leaf is on its way to the tree…" class="message" picking-mode="Ignore" />
+            <ui:VisualElement class="kiosk-icon sending-icon icon-upload" picking-mode="Ignore" />
+            <ui:Label text="Your leaf is on its way to the tree\u2026" class="message" picking-mode="Ignore" />
         </ui:VisualElement>
 
         <ui:VisualElement name="screen-result" class="screen screen--center" picking-mode="Position">
+            <ui:VisualElement name="result-status-icon" class="kiosk-icon result-status-icon" picking-mode="Ignore" />
             <ui:VisualElement name="result-icon" class="result-icon" picking-mode="Ignore" />
             <ui:Label name="result-label" class="message" picking-mode="Ignore" />
         </ui:VisualElement>
 
         <ui:VisualElement name="screen-thanks" class="screen screen--center" picking-mode="Position">
+            <ui:VisualElement name="thanks-heart-icon" class="kiosk-icon thanks-heart-icon icon-heart" picking-mode="Ignore" />
             <ui:VisualElement class="result-icon" picking-mode="Ignore" />
             <ui:Label name="thanks-label" class="message thanks-message" picking-mode="Ignore" />
             <ui:Label text="Thank you for planting a promise." class="hint" picking-mode="Ignore" />
         </ui:VisualElement>
 
-        <ui:Label name="connection-status" text="&#x25CF; Connecting to wall&#x2026;" class="connection-status" picking-mode="Ignore" />
+        <ui:VisualElement class="connection-bar" picking-mode="Ignore">
+            <ui:VisualElement name="connection-icon" class="kiosk-icon connection-icon" picking-mode="Ignore" />
+            <ui:Label name="connection-status" text="&#x25CF; Connecting to wall&#x2026;" class="connection-status" picking-mode="Ignore" />
+        </ui:VisualElement>
 
         <ui:VisualElement name="operator-corner" class="operator-corner" picking-mode="Position" />
 
         <ui:VisualElement name="pin-overlay" class="overlay" picking-mode="Position">
             <ui:VisualElement class="panel">
-                <ui:Label text="Operator PIN" class="panel-title" />
+                <ui:VisualElement class="panel-title-row">
+                    <ui:VisualElement class="kiosk-icon panel-title-icon icon-lock" picking-mode="Ignore" />
+                    <ui:Label text="Operator PIN" class="panel-title" />
+                </ui:VisualElement>
                 <ui:Label name="pin-dots" text=" " class="pin-dots" />
                 <ui:Label name="pin-error" text=" " class="pin-error" />
                 <ui:VisualElement name="pin-pad" class="pin-pad">
@@ -102,15 +141,28 @@
 
         <ui:VisualElement name="operator-overlay" class="overlay" picking-mode="Position">
             <ui:VisualElement class="panel">
-                <ui:Label text="Operator" class="panel-title" />
+                <ui:VisualElement class="panel-title-row">
+                    <ui:VisualElement class="kiosk-icon panel-title-icon icon-gear" picking-mode="Ignore" />
+                    <ui:Label text="Operator" class="panel-title" />
+                </ui:VisualElement>
                 <ui:Label name="op-server" text="Server: not checked" class="op-line" />
                 <ui:Label name="op-pending" text="Pending offline leaves: 0" class="op-line" />
                 <ui:Label name="op-url" text=" " class="op-line op-small" />
-                <ui:Button name="op-check" text="Check server connection" class="kiosk-button secondary small wide" />
-                <ui:Button name="op-retry" text="Send pending leaves now" class="kiosk-button secondary small wide" />
-                <ui:Button name="op-restart" text="Restart app" class="kiosk-button secondary small wide" />
-                <ui:Button name="op-exit" text="Exit kiosk mode" class="kiosk-button danger small wide" />
-                <ui:Button name="op-close" text="Close" class="kiosk-button primary small wide" />
+                <ui:Button name="op-check" text="Check server connection" class="kiosk-button secondary small wide">
+                    <ui:VisualElement class="kiosk-icon btn-icon-sm btn-icon-left icon-connection icon-tint-light" picking-mode="Ignore" />
+                </ui:Button>
+                <ui:Button name="op-retry" text="Send pending leaves now" class="kiosk-button secondary small wide">
+                    <ui:VisualElement class="kiosk-icon btn-icon-sm btn-icon-left icon-upload icon-tint-light" picking-mode="Ignore" />
+                </ui:Button>
+                <ui:Button name="op-restart" text="Restart app" class="kiosk-button secondary small wide">
+                    <ui:VisualElement class="kiosk-icon btn-icon-sm btn-icon-left icon-restart icon-tint-light" picking-mode="Ignore" />
+                </ui:Button>
+                <ui:Button name="op-exit" text="Exit kiosk mode" class="kiosk-button danger small wide">
+                    <ui:VisualElement class="kiosk-icon btn-icon-sm btn-icon-left icon-exit icon-tint-danger" picking-mode="Ignore" />
+                </ui:Button>
+                <ui:Button name="op-close" text="Close" class="kiosk-button primary small wide">
+                    <ui:VisualElement class="kiosk-icon btn-icon-sm btn-icon-right icon-close icon-tint-dark" picking-mode="Ignore" />
+                </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

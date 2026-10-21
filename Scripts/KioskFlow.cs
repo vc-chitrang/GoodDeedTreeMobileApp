@@ -30,7 +30,6 @@ namespace GoodDeedTreeMobileApp {
         private const string VisibleClass = "screen--visible";
         private const string CountCacheKey = "GoodDeedKiosk.PromiseCount";
         private const float SwipeDistance = 170f;
-        private const float SwipeMaxSeconds = 1.2f;
         private const float LiftSeconds = 1.3f;
         private const float ScreenFadeSeconds = 0.35f;
 
@@ -70,8 +69,8 @@ namespace GoodDeedTreeMobileApp {
 
         private bool swipeTracking;
         private int swipePointerId;
+        private float swipeStartX;
         private float swipeStartY;
-        private float swipeStartTime;
 
         private void Awake() {
             if (config == null) {
@@ -92,6 +91,8 @@ namespace GoodDeedTreeMobileApp {
         }
 
         private ConnectionStatusView connectionStatus;
+        private KeyboardAvoider keyboardAvoider;
+        private IdleDeedCards idleCards;
 
         private void OnEnable() {
             if (config == null) {
@@ -102,6 +103,8 @@ namespace GoodDeedTreeMobileApp {
             operatorPanel = new OperatorPanel(root, config, api, queue);
             leaf = new LeafView(root);
             connectionStatus = new ConnectionStatusView(root, api, queue);
+            keyboardAvoider = new KeyboardAvoider(root, screens[KioskScreen.Input]);
+            idleCards = new IdleDeedCards(root, api, config);
             BuildChips();
             UpdateCountLabel();
             ShowScreenImmediate(KioskScreen.Attract);
@@ -119,6 +122,15 @@ namespace GoodDeedTreeMobileApp {
         private void Update() {
             if (connectionStatus != null) {
                 connectionStatus.Tick();
+            }
+            if (keyboardAvoider != null) {
+                keyboardAvoider.Tick();
+            }
+            if (leaf != null) {
+                leaf.Tick(Time.unscaledDeltaTime);
+            }
+            if (idleCards != null) {
+                idleCards.Tick(current == KioskScreen.Attract);
             }
             float now = Time.realtimeSinceStartup;
             bool inProgress = current != KioskScreen.Attract || operatorPanel.IsOpen;
@@ -249,6 +261,9 @@ namespace GoodDeedTreeMobileApp {
         private void ShowScreen(KioskScreen screen) {
             if (screen == current) {
                 return;
+            }
+            if (current == KioskScreen.Input && keyboardAvoider != null) {
+                keyboardAvoider.Reset();   // leaving the form: drop any keyboard shift
             }
             VisualElement from = screens[current];
             VisualElement to = screens[screen];
@@ -390,17 +405,22 @@ namespace GoodDeedTreeMobileApp {
             }
             swipeTracking = true;
             swipePointerId = evt.pointerId;
+            swipeStartX = evt.position.x;
             swipeStartY = evt.position.y;
-            swipeStartTime = Time.realtimeSinceStartup;
             screens[KioskScreen.Release].CapturePointer(evt.pointerId);
+            DOTween.Kill(swipeArrow);
+            leaf.BeginFollow();   // leaf scales up a little and starts tracking the finger
         }
 
         private void OnReleasePointerMove(PointerMoveEvent evt) {
             if (!swipeTracking || evt.pointerId != swipePointerId) {
                 return;
             }
-            float up = Mathf.Min(0f, evt.position.y - swipeStartY);
-            leaf.SetDrag(up * 0.6f);
+            // The leaf follows the finger freely; downward travel is damped so it can't be
+            // dragged off the bottom of the screen.
+            float dx = evt.position.x - swipeStartX;
+            float dy = evt.position.y - swipeStartY;
+            leaf.FollowTo(dx, dy < 0f ? dy : dy * 0.35f);
         }
 
         private void OnReleasePointerUp(PointerUpEvent evt) {
@@ -408,12 +428,13 @@ namespace GoodDeedTreeMobileApp {
                 return;
             }
             EndSwipeTracking();
+            // Released only when the finger lifts after moving up far enough.
             float travelled = swipeStartY - evt.position.y;
-            float seconds = Time.realtimeSinceStartup - swipeStartTime;
-            if (travelled >= SwipeDistance && seconds <= SwipeMaxSeconds) {
+            if (travelled >= SwipeDistance) {
                 ReleaseLeaf();
             } else {
                 leaf.SpringBack();
+                RestartSwipeHint();
             }
         }
 
@@ -423,6 +444,14 @@ namespace GoodDeedTreeMobileApp {
             }
             EndSwipeTracking();
             leaf.SpringBack();
+            RestartSwipeHint();
+        }
+
+        private void RestartSwipeHint() {
+            DOTween.Kill(swipeArrow);
+            swipeArrow.style.translate = new Translate(0f, 0f, 0f);
+            DOTween.To(() => 0f, v => swipeArrow.style.translate = new Translate(0f, v, 0f), -34f, 0.9f)
+                .SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetId(swipeArrow);
         }
 
         private void EndSwipeTracking() {
@@ -480,9 +509,7 @@ namespace GoodDeedTreeMobileApp {
             ShowScreen(KioskScreen.Result);
             yield return new WaitForSecondsRealtime(config.ResultHoldSeconds);
 
-            thanksLabel.text = result.LeafNumber > 0
-                ? "Your leaf is now part of the Tree — leaf #" + result.LeafNumber.ToString("N0", NumberCulture)
-                : "Your leaf is now part of the Tree";
+            thanksLabel.text = "Look up \u2014 your leaf just joined the tree";
             ShowScreen(KioskScreen.ThankYou);
             yield return new WaitForSecondsRealtime(config.ThankYouSeconds);
 

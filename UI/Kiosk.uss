@@ -8,7 +8,7 @@
     bottom: 0;
     background-image: url("../Art/Background.png");
     -unity-background-scale-mode: stretch-to-fill;
-    -unity-font: url("../Art/Fonts/ConduitITC-Regular.otf");
+    -unity-font-definition: url("../Art/Fonts/PlayfairDisplay-VariableFont_wght.ttf");
     color: rgb(255, 244, 220);
     overflow: hidden;
 }
@@ -68,7 +68,8 @@
 
 .leaf-name {
     font-size: 64px;
-    -unity-font: url("../Art/Fonts/ConduitITC-Bold.ttf");
+    -unity-font-definition: url("../Art/Fonts/PlayfairDisplay-VariableFont_wght.ttf");
+    -unity-font-style: bold;
     color: rgb(255, 232, 40);
     -unity-text-align: middle-center;
     -unity-text-outline-width: 1px;
@@ -79,7 +80,8 @@
 }
 
 .leaf-promise {
-    font-size: 34px;
+    font-size: 40px;
+    -unity-font-definition: url("../Art/Fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf");
     color: rgb(255, 232, 40);
     -unity-text-align: middle-center;
     -unity-text-outline-width: 0.75px;
@@ -195,7 +197,7 @@
     border-color: rgba(232, 190, 96, 0.55);
     background-color: rgba(255, 250, 238, 0.96);
     color: rgb(30, 34, 30);
-    -unity-font: url("../Art/Fonts/ConduitITC-Regular.otf");
+    -unity-font-definition: url("../Art/Fonts/PlayfairDisplay-VariableFont_wght.ttf");
 }
 
 .kiosk-field--promise .unity-text-field__input,
@@ -245,7 +247,8 @@
     border-radius: 62px;
     border-width: 0;
     margin-top: 14px;
-    -unity-font: url("../Art/Fonts/ConduitITC-Bold.ttf");
+    -unity-font-definition: url("../Art/Fonts/PlayfairDisplay-VariableFont_wght.ttf");
+    -unity-font-style: bold;
     transition-property: opacity, scale;
     transition-duration: 0.18s;
 }
@@ -425,4 +428,36 @@
 
 .connection-status--offline {
     color: rgba(255, 140, 120, 0.9);
+}
+
+
+/* ---------- idle deed cards on the attract screen ---------- */
+
+.deed-cards {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.deed-card {
+    position: absolute;
+    width: 560px;
+    padding: 26px 34px;
+    border-radius: 34px;
+    background-color: rgba(255, 246, 225, 0.12);
+    border-width: 1px;
+    border-color: rgba(255, 220, 140, 0.35);
+    opacity: 0;
+}
+
+.deed-card-text {
+    font-size: 34px;
+    -unity-font-definition: url("../Art/Fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf");
+    color: rgb(255, 240, 204);
+    white-space: normal;
+    -unity-text-align: middle-center;
+    text-shadow: 0 2px 6px rgba(20, 12, 0, 0.6);
 }
